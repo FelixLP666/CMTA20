@@ -1,7 +1,4 @@
 /* 
- * Copyright (c) Capital Market and Technology Association, 2018-2019
- * https://cmta.ch
- *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. 
@@ -22,9 +19,136 @@ import "./interface/IRuleEngine.sol";
 
 /**
  * @title CMTA20
- * @dev CMTA20 contract
- *
+ * @dev CMTA20 contract since 2018 to 2020
  * @author Sébastien Krafft - <sebastien.krafft@mtpelerin.com>
+ * https://github.com/CMTA/CMTA20
+ * 
+ * 
+ * @title DXSCR
+ * @dev DXSCR arrowtrade.ch from 2020
+ * @author Felix Götz & Colin Studiger - to the moon :-)
+ *                                                                                                                                                                                                    
+ *    ((((((((                                                                                                                                                                                           
+     ((((((((((//                                                                                                                                                                                       
+     ,((((((((((/////                                                                                                                                                                                   
+      /((((((((//////////                                                                                                                                                                               
+       ((((((((//////////////.                                                                                                                                                                          
+        ((((((///////////////////                                                                                                                                                                       
+         ((((////////////////////////                                                                                                                                                                   
+          ((////////////////////////////.                                                                                                                                                               
+          ((//////////////////////////////                                                                                                                                                              
+           ///////////////////////////////                                                                                                                                        .                     
+          ///////////////////////////////     ,(                                                                                                                                &&&                     
+          ////////////////////////////       ,(((                                                                                    /&                                         %&&                     
+        /////////////////////////            (((((         (((((   /((   (((((   /((     /((((((((/    ((((/    ((((     *((((     &&&&        .   (%,     #&&&#           %&&/ %&&        .%%(         
+        ///////////////////////               ((/((,       (((((*(((((   (((((*(/(((  ,(/(((((((/((((/  /((((   /((((   ,((((       &&&      &&&,& *&&  &&&     &&      &&      &&&     &&     &&&      
+       ////////////////////                    (((((      (((((((       (((((((     *((((/      /((((/  ((((( (((((((,,((((        &&&       &&,        .      &&(   %&&       %&&    &&&&&&&&&&&&     
+      /////////////////                  /(((((((((((/     (((((.        (((((.      (((((        (((((   (((((((/ ((((((((         &&&       &&,         *&&   &&(   &&&       %&&   &&&               
+     //////////////                     *********((((((    (((((         (((((        (((((      (((((*    (((((/   *(((((          &&&       &&,       &&*     &&(   &&&       %&&   ,&&#         &    
+     //////////                                   (((((/   (((((         (((((         (((((((((/((((       /((.      (((           &&&   .   &&/      #&&&    &&&%    &&&#     &&&    *&&&&    .&*     
+     /////,                                        //////  /////         /////            ,/(((((/           /         (             (&&&  %%%%%%%%      %&&%   .&&*     ,&&&&. %%        %&&&&/        
+                                                                                                                                                                                                  
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNXXNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWNK000XNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKOxoodk0XNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKOxolcldxOKNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXOxoc;'';lkXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKOdc;;::lodOKNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXOdl:,....,lOXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWX0xolc:;,;cldOKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKko:,....''';o0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWN0xollclc:;;;cokKNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXko:'...'''''',l0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN0doollllllc:;;dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKxc,...''''''''';dXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXkooollllloolxNMMWK0NMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN0d:'..'''''''''''':kWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNOoooolcloookNMMNx:coONMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMW0d:'..'''''''''''''':OWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNOooolcloookNMMWOlc;;:o0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXx:'..'''''''''''''''';kWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNOollcloookNMMWOllllc;oXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWOl,..'''''''''''''''''',dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXxllcloookNMMWOolccclxNMMWNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXk:...''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMW0occloookNMMWOolllccxNMMNxcxXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXd;..'''''''''''''''''''''',xWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWNNNNNWWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNxccloookNMMWOolllllkNMMWOc;;oKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKo,..''''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNK0kxxxxxxxxxkO0XWMMMMMMMMMMMMMMMMMMMMMMMMMMMMW0ocllookNMMWOlclllokNMMWOol:;;o0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMWKo,..''''''''''''''''''''''''''oNMMMMMMMMMMMMMMMMMMMMMMMMMMMN0xolllllllooolllldkKWMMMMMMMMMMMMMMMMMMMMMMMMMMMXdcloookNMMWOlclllokNMMWOllllc;oXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMXd,..''''''''''''''''''''''''''',xWMMMMMMMMMMMMMMMMMMMMMMMMMWXkolllooolllllllllllloONMMMMMMMMMMMMMMMMMMMMMMMMMMNxllollkNMMWOlcllllkNMMWOllllllxNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMNk;..''''''''''''''''''''''''''''';OMMMMMMMMMMMMMMMMMMMMMMMMMMNkoolllooooollclllllllcl0WMMMMMMMMMMMMMMMMMMMMMMMMMWOlllllkNMMWOlclollxNMMWOlllllcxNMMWXNMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMW0c..''''''''''''''''''''''''''''''':0MMMMMMMMMMMMMMMMMMMMMMMMMW0ooollllllllllllllllllllxXMMMMMMMMMMMMMMMMMMMMMMMMMWOllcclkNMMWOlllollxNMMWOollcccxNMMNdcOWMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMXd'..'''''''''''''''''''''''''''''''':0MMMMMMMMMMMMMMMMMMMMMMMMMWOolollloolllooooolcclllldKMMMMMMMMMMMMMMMMMMMMMMMMMM0olc;ckNMMWOlllollxNMMWOlccclcxNMMWk:,lKWMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMWO:..''''''''''''''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMWkllollloooooooool:;:llclo0WMMMMMMMMMMMMMMMMMMMMMMMMM0oolclkNMMWOlclllcxNMMNkccllccxNMMWOl:';kNMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMNd'.''''''''''''''''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMWkllolllooooolllllllcccccdKWMMMMMMMMMMMMMMMMMMMMMMMMM0ollclkNMMWOlcllllxNMMWOllllccxNMMWOlc:,,oXMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMKc..'''''''''''''''''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMWkllollloooollllloooolc::oKWMMMMMMMMMMMMMMMMMMMMMMMMMKdlc:lkNMMWOolllccxNMMWOlcllccxNMMWkc::cc,oXMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMWO;..''''''''''''''''''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMWkloollloooolllooooooolc:l0WMMMMMMMMMMMMMMMMMMMMMMMMW0ollcckNMMWOllll::dNMMWOlcllccxNMMWklccllcdXMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMWx'.''''''''''''''''''''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMNkllollloooollooooollllcco0WMMMMMMMMMMMMMMMMMMMMMMMMMKolc:cxNMMWOllllcckNMMWOlcllllxNMMWOlcccclxNMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMNo..'''''''''''''''''''''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMNkllollloooollooooollllccdKWMMMMMMMMMMMMMMMMMMMMMMMMMKdlc::xNMMWOollc:ckNMMWOlcllllxNMMWOlc:cllkNMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMNo..''''''''''''''''''''''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMNkloollloooolloooooooolccoKWMMMMMMMMMMMMMMMMMMMMMMMMMKolc::xNMMWOllll:cxNMMWOlcllclxNMMWkl::cllkNMMWKXMMMMMMMMMMMMM
+MMMMMMMMMMMXl..'''''''''''''''''''''''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMNkllollloooollloooooolllco0WMMMMMMMMMMMMMMMMMMMMMMMMMKolc:ckNMMWOllllccxXMMWkllllccxNMMWOl::cllkNMMNocKMMMMMMMMMMMM
+MMMMMMMMMMNl..''''''''''''''''''''''''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMNOllllllooolllllooollllllo0WMMMMMMMMMMMMMMMMMMMMMMMMMKolc:ckNMMWOollcclkNMMWOllccllxNMMWOlc:lllkNMMWx,cKMMMMMMMMMMM
+MMMMMMMMMNo..''''''''''''''''''''''''''''''''''''''''''''':KMMMMMMMMMMMMMMMMMMMMMMMMMWOoolllloooollloooollollldKWMMMMMMMMMMMMMMMMMMMMMMMMMKolc:cxNMMWOolccclkNMMWOlcllllxNMMWOlc:cllkNMMWOc'cXMMMMMMMMMM
+MMMMMMMMWd..'''''''''''''''''''''''''''''''''''''''''''''':0MMMMMMMMMMMMMMMMMMMMMMMMMW0doollllooooooooooooollldKWMMMMMMMMMMMMMMMMMMMMMMMMM0ollccxNMMWOollcccxNMMWklllllcxNMMWklcclccxNMMWOl:'oNMMMMMMMMM
+MMMMMMMWk'.''''''''''''''''''''''''''''''''''''''''''''''':0MMMMMMMMMMMMMMMMMMMMMMMMMMNkoolllllloooooooololllldKWMMMMMMMMMMMMMMMMMMMMMMMMM0ollccxNMMWOollcc:xNMMNkllllllxNMMWOl:ccccxNMMNkll:,dWMMMMMMMM
+MMMMMMM0;..''''''''''''''''''''''''''''''''''''''''''''''',kWMMMMMMMMMMMMMMMMMMMMMMMMMWXxolllollllloooollllllld0WWWWWWWWWWWWWWWWWWWWWWWWWW0lcccckNMMWOollc::xNMMNkllllllxNMMWklcccllkNMMWOoll;,OWMMMMMMM
+MMMMMMXc..'''''''''''''''''''''''''''''''''''''''''''''''''dNMMMMMMMMMMMMMMMMMMMMMMMMMMWXxlllooolllllloooollllodxkkkkxxkxxxxkxxxkkxxkkkxxxdlcc:cxNMMWOolcc:cxNMMNkllllllxNMMWOllccllkNMMWOollc,:KMMMMMMM
+MMMMMWx..''''''''''''''''''''''''''''''''''''''''''''''''''c0MMMMMMMMMMMMMMMMMMMMMMMMMMMMNkollooooollllloololllccoloolllcclllc::llllollcccllll:cxNMMWOlcccccxNMMNkcllllcxNMMWOolccllxNMMWOolllc'oNMMMMMM
+MMMMM0;.''''''''''''''''''''''''''''''''''''''''''''''''''',xWMMMMMMMMMMMMMMMMMMMMMMMMMMMMW0dlloooooollllllllllcclllllllc:clll:;cllloolc::llllccxNMMWOllccccxNMMWkccllccdNMMWOolccllxNMMWOlllll;,OMMMMMM
+MMMMNo..''''''''''''''''''''''''''''''''''''''''''''''''''''c0MMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNOdooooooolllllllllcclllllllccclllc:clclolllc:llllccxXMMWOllccccxNMMWOllccccdNMMWOolccllxNMMWOlllllc'cXMMMMM
+MMMM0,.''''''''''''''''''''''''''''''''''''''''''''''''''''',oNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXkdooooolllolllllcclllllloccllllc:llccllool:clllc:xNMMWOlllccckNMMWklllcccdNMMWOllccllxNMMWOllllll;,kMMMMM
+MMMWo..'''''''''''''''''''''''''''''''''''''''''''''''''''''',xWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXkdooollloloollccllllloolcllllc:lllcllllc:cllc:cxNMMWOlcccclkNMMWklllcccdNMMWkllclllxNMMWOllllllc'cXMMMM
+MMM0,.'''''''''''''''''''''''''''''''''''''''''''''''''''''''';kWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXOxdlllllloolccllllooolcllllc:llllllccllcc:cccxNMMWOlcccclkNMMNkcllcccdNMMWOllllllxNMMWklllllll;,kMMMM
+MMWx..''''''''''''''''''''''''''''''''''''''''''''''''''''''''';kWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWXOdollololcclllooooccllllc:llllllclllcll:::xNMMWkccllclkNMMNkcllcccdNMMWOollcccdNMMWklllllllc'oWMMM
+MMNc..'''''''''''''''''''''''''''''''''''''''''''''''''''''''''';kNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWN0kdooolccolllloolcllllc:lllllccllcclc:::xNMMWOllllclkNMMNkcllcc:dNMMWOolccccdNMMWkllllllll,:KMMM
+MM0,.'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''';dXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXOxolccol:cooolcllllc:lllll:;clcclc:::xNMMWOllllclkNMMNkcllcc:dXMMWOlcccllxNMMWkllllllll;,kMMM
+MMx..''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''',l0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKkllllclooolcllllc:lllll::llc:ccc::xNMMWOlclcclkNMMWklllcc:dNMMWkllllllxNMMWkllllllll:'oWMM
+MWo..''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''':xNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXOxollloolcllllc:lllll::ll;;llc::xNMMWOc:cllokNMMWkllccc:dXMMWkllllllxNMMWkllllllllc'cNMM
+MNc..'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''',l0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXOdollccllllc:lllcl::ll::llc::xNMMWkccllllkNMMWklccll:dNMMWkllclllxNMMWkllcllllll,:KMM
+MX:.''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''';oKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWN0kolcllllc:llcll::ll:cllc::xNMMWkccllllxXMMWkccllc:dXMMWkllllllxNMMWOlllllllll,;0MM
+MK;.''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''';dKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXkollllc:cllll::ll::llc:;dNMMWOlcllllxXMMWklllllcdXMMWkllllllxNMMWOlllllclll;,OMM
+MK,.''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''';o0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXOdllc:lolllc:llccllc::xNMMWOllllllxXMMWklllllcdXMMWkcllllcdXMMWOlllllllll;,OMM
+M0,.''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''';lONMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXkocclolllc:llccllcccxNMMNklllllldXMMWkcllllcxNMMWkllccllkNMMWklllllllll;,kMM
+MK;.''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''',cxKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXxllllllc:clccllccckNMMWkcclllcdXMMNxcccllcxNMMWkccclllkNMMWklllllllll;,OMM
+MK;.'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''';lkXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMW0xolllccclccllc:ckNMMWOlcccllxXMMNxccccccxNMMWkccclllkNMMWOlllllllll;;OMM
+MX:.''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''':oONWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNOoclc:cc:cllc::xNMMWOllllccxNMMWkllcclcxNMMWOl::cllkNMMWOlllllclll,;0MM
+MNl..'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''',cdKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMW0dl:::clllllc:dXMMWklllllcxNMMWkllcclcxNMMWOlc:cclkNMMWOlllllclll':XMM
+MWd..''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''';lONWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXxc;:llllccllxNMMWOllllllkNMMWkllcclcxNMMWklccclcxNMMWOlllllcllc'lNMM
+MMk'.''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''',cxKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNxcccclllllcdNMMWkllccllkNMMWkllcclcxNMMWOl::cllkNMMWOllllllll:'dWMM
+MMK;.'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''';dKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXdllllllllcdXMMWkc::cllkNMMWkcccclcxNMMWOoc:cclkNMMWOlllllcll;,OMMM
+MMNl..''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''';o0NWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXxlllllc:;dNMMWOl:;:llkNMMWklc::ccxNMMWOocccclkNMMWOlllllcll':XMMM
+MMMk..''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''';:oKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKdlllc:;;dNMMWOl:;cccxNMMWkll::ccxNMMWOlcccclkNMMWOlllllcl:'dWMMM
+MMMX:.'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''';dXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWOollccccxNMMWkc;;clcxNMMWkll::ccxNMMWOlcccclkNMMWOlllllcc,;0MMMM
+MMMWd..'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''cONMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXxllccllxNMMWOl:;:clkNMMWkll::clxNMMWOlc:ccckNMMWOllllll:'lNMMMM
+MMMMK;.'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''',dXMMMMMMMMMMMMMMMMMMMMMMMMMMMMWOolccllxNMMWOl::lllkNMMWklc::ccdNMMWOlc:ccckNMMWOlllllc,,OMMMMM
+MMMMWx..'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''l0WMMMMMMMMMMMMMMMMMMMMMMMMMMMXxlccllxNMMWkl:clllkNMMWkccc:::dNMMWOlcccccxNMMWOlllll:'oNMMMMM
+MMMMMX:..'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''c0WMMMMMMMMMMMMMMMMMMMMMMMMMMNklc:lcxNMMWOl:clccxNMMWklc::ccxNMMWOlcccccxNMMWOollll,;0MMMMMM
+MMMMMMO'.''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMMWOo::ccxNMMWkccccclkNMMWkccccclxNMMWOlc::clxNMMWOllll;,xWMMMMMM
+MMMMMMWo..'''''''''''''''''''''''''''''''''''''''''''''''',:cccccccccccccccccccccccccc;'''''''''''''''''''''',dNMMMMMMMMMMMMMMMMMMMMMMMMMW0o::llxNMMWOlcclllxNMMWkllc:ccxNMMWOlc::ccxNMMWklllc'lXMMMMMMM
+MMMMMMMXc..''''''''''''''''''''''''''''''''''''''''''''''':0WWWWWWWWWWWWWWWWWWWWWWWWWXo''''''''''''''''''''''':0MMMMMMMMMMMMMMMMMMMMMMMMMMKo::llxNMMWOlclllcxNMMWOol::clkNMMWkcccc:cxNMMWkllc,:KMMMMMMMM
+MMMMMMMM0;.'''''''''''''''''''''''''''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMNo''''''''''''''''''''''';OMMMMMMMMMMMMMMMMMMMMMMMMMMKo::llxNMMWOlclllcxNMMWOlc:cclkNMMWkcccllcxNMMWOlc,,kWMMMMMMMM
+MMMMMMMMMO,.''''''''''''''''''''''''''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMNo''''''''''''''''''''''';OMMMMMMMMMMMMMMMMMMMMMMMMMM0o::llxNMMWOlclllcxNMMWOlcccllkNMMWkcllllcxNMMWOl;,xWMMMMMMMMM
+MMMMMMMMMWk'.'''''''''''''''''''''''''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMNo''''''''''''''''''''''';OMMMMMMMMMMMMMMMMMMMMMMMMMM0o;:llxNMMWOcclllcxNMMWOlcccllkNMMWOlllllcdNMMWk:'dNMMMMMMMMMM
+MMMMMMMMMMWx'.''''''''''''''''''''''''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMNo''''''''''''''''''''''';OMMMMMMMMMMMMMMMMMMMMMMMMMMKdc:::xNMMWOl:cllcxNMMWOlc:cllkNMMWOlllllcxNMMWd,oNMMMMMMMMMMM
+MMMMMMMMMMMWx'.'''''''''''''''''''''''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMNo''''''''''''''''''''''';OMMMMMMMMMMMMMMMMMMMMMMMMMMKdcc:;dNMMWOlccllcxNMMWOlc::llkNMMWOlllllcdNMMNddNMMMMMMMMMMMM
+MMMMMMMMMMMMWk'.''''''''''''''''''''''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMNo''''''''''''''''''''''';OMMMMMMMMMMMMMMMMMMMMMMMMMMKdccccxNMMWOlclllcxNMMWkccccccxNMMWOlllllcdNMMWNNMMMMMMMMMMMMM
+MMMMMMMMMMMMMWO,.'''''''''''''''''''''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMNo''''''''''''''''''''''';OMMMMMMMMMMMMMMMMMMMMMMMMMM0occllxNMMWOlclllcxNMMWkcclllcxNMMWOlllllcxNMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMM0:..'''''''''''''''''''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMNo''''''''''''''''''''''';OMMMMMMMMMMMMMMMMMMMMMMMMMMKoccllxNMMWOc:llllkNMMWOolcclcxNMMWOlllllcdNMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMXl..''''''''''''''''''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMNo''''''''''''''''''''''';OMMMMMMMMMMMMMMMMMMMMMMMMMMKdc:;:xNMMWOl:clllkNMMWOllcclcxNMMWOlllll:lXMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMNd'.''''''''''''''''''''''''''''''''''''':KMMMMMMMMMMMMMMMMMMMMMMMMMNo''''''''''''''''''''''';OMMMMMMMMMMMMMMMMMMMMMMMMMMKdcc:cxNMMWOlc:cllkNMMWkclcclcxNMMWOlllc;,dNMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMWO;..''''''''''''''''''''''''''''''''''':KMMMMMMMMMMMMMMMMMMMMMMMMMNo''''''''''''''''''''''';OMMMMMMMMMMMMMMMMMMMMMMMMMMKocc:cxNMMWOlcccccxNMMWkclcclcxNMMWkll:,;kWMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMXo'.'''''''''''''''''''''''''''''''''':KMMMMMMMMMMMMMMMMMMMMMMMMMNo''''''''''''''''''''''';OMMMMMMMMMMMMMMMMMMMMMMMMMMKolc::xNMMWOllllllxNMMWkclcclcxNMMWk:,'lKMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMWO:..'''''''''''''''''''''''''''''''':0MMMMMMMMMMMMMMMMMMMMMMMMMWd,'''''''''''''''''''''';OMMMMMMMMMMMMMMMMMMMMMMMMMM0olc::xNMMWkllllllkNMMWkclcclcxNMMWx';kNMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMNd,..'''''''''''''''''''''''''''''':0MMMMMMMMMMMMMMMMMMMMMMMMMMO;''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMW0lclc:dNMMWOlcclllkNMMWkclcclcdNMMNxdKMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMWKl'.''''''''''''''''''''''''''''';OMMMMMMMMMMMMMMMMMMMMMMMMMMXo''''''''''''''''''''',xWMMMMMMMMMMMMMMMMMMMMMMMMMWOlclllxNMMWOocclllkNMMWkclccl:oXMMWWWMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMW0c...'''''''''''''''''''''''''',kWMMMMMMMMMMMMMMMMMMMMMMMMMMKl,'''''''''''''''''',dNMMMMMMMMMMMMMMMMMMMMMMMMMMNkcccllxNMMWOocclllkNMMWkcc::c:dXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMWOc..''''''''''''''''''''''''''oNMMMMMMMMMMMMMMMMMMMMMMMMMMMXxc,'''''''''''''',lONMMMMMMMMMMMMMMMMMMMMMMMMMMMXxc:cllxNMMWOlcccllkNMMWk:ccc;,oNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWOc'..'''''''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXOxoc:;;;;;;:loxKNMMMMMMMMMMMMMMMMMMMMMMMMMMMMW0lcllllxNMMWOlcccllkNMMWx::;,ckNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMW0l'..''''''''''''''''''''',xWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWNXXXXXXNWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNkc:ccccdNMMWklccc::xNMMWx,,lONMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKd;...'''''''''''''''''''cKMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKdll:;;:xNMMNkllccccxNMMWkd0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNkc'..''''''''''''''''',dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXxlllc:;:xNMMWklccclcdNMMMWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKd:...''''''''''''''';kWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNklllllcccxNMMWkllc:,,dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN0o;...''''''''''''':OWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNOlcllll::cxNMMWkc;,;oONMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN0o:'...'''''''''':OWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNOoccllcc::lkNMMNxcoONWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKxc,...'''''''';xNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXkolccc::::ccdXMMWNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXOoc,...''''',l0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMW0dcclccc;;;,;ckNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXOdc;'...'';dKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKxolc::;,;:lokKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN0xoc;'..,oONMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWN0xl:;;;:cox0XWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKkdl::lx0NMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXOoc::lodk0XWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNK00XNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKOxxOKNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+ *
  *
  * errors:
  * CM01: Attempt to reassign from an original address which is 0x0
@@ -36,7 +160,7 @@ import "./interface/IRuleEngine.sol";
  */
 
  
-contract CMTA20 is ERC20, Ownable, Pausable, IContactable, IIdentifiable, IIssuable, IDestroyable, IReassignable {
+contract DXSCR is ERC20, Ownable, Pausable, IContactable, IIdentifiable, IIssuable, IDestroyable, IReassignable {
   using SafeMath for uint256;
 
   /* Constants */
